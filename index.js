@@ -36,8 +36,7 @@ app.post("/registerToNewsletter", async (req, res) => {
         return
     }
     
-    const rawData = await fs.readFile('./data/newsletter.json' , 'utf-8');
-    const data = JSON.parse(rawData)
+    const data = JSON.parse(await fs.readFile('./data/newsletter.json' , 'utf-8'));
     
     if (data.includes(req.body.email)) {
         res.status(400).send({ error: "Email already exists." });
